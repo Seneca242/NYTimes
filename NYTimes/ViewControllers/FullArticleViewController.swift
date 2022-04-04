@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FullArticleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
