@@ -9,32 +9,43 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
+    var articles: [ArticleDetails] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchArticles()
 
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        articles.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        1
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? ArticleTableViewCell else { fatalError() }
+        let articles = articles[indexPath.row]
+        cell.configure(with: articles)
         return cell
     }
-    */
+    
+    private func fetchArticles() {
+        NetworkManager.shared.fetch(from: APIManager.shared.url) { results in
+            switch results {
+            case .success(let article):
+                self.articles = article
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

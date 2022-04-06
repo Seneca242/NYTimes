@@ -19,18 +19,24 @@ class ArticleTableViewCell: UITableViewCell {
         super.awakeFromNib()
        
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
-    private func configure(with article: ArticleDetails) {
+    
+    func configure(with article: ArticleDetails) {
         filmTitleLabel.text = article.display_title
         headlineLabel.text = article.headline
         summaryShortLabel.text = article.summary_short
         authorLabel.text = article.byline
-//        articleImage.image = UIImage(data: <#T##Data#>)
+        
+        guard let url = URL(string: article.multimedia?.src ?? "") else { return }
+        DispatchQueue.global().async {
+            guard let imageData = try? Data(contentsOf: url) else { return }
+            
+            DispatchQueue.main.async {
+                self.articleImage.image = UIImage(data: imageData)
+            }
+        }
     }
-    
-    
 }

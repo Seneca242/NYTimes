@@ -17,6 +17,7 @@
 		04C305CB27F9B10C00999CE8 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C305CA27F9B10C00999CE8 /* ArticleTableViewCell.swift */; };
 		04C305CD27FAF2D100999CE8 /* ArticlesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C305CC27FAF2D100999CE8 /* ArticlesModel.swift */; };
 		04C305CF27FAF2EC00999CE8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C305CE27FAF2EC00999CE8 /* NetworkManager.swift */; };
+		04C305D827FC32E800999CE8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C305D727FC32E800999CE8 /* API.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		04C305CA27F9B10C00999CE8 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		04C305CC27FAF2D100999CE8 /* ArticlesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesModel.swift; sourceTree = "<group>"; };
 		04C305CE27FAF2EC00999CE8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		04C305D727FC32E800999CE8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +80,8 @@
 		04C305D027FB80ED00999CE8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				04C305B627F99B4A00999CE8 /* FullArticleViewController.swift */,
 				04C305C827F9AD7500999CE8 /* MainTableViewController.swift */,
+				04C305B627F99B4A00999CE8 /* FullArticleViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				04C305CE27FAF2EC00999CE8 /* NetworkManager.swift */,
+				04C305D727FC32E800999CE8 /* API.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				04C305CF27FAF2EC00999CE8 /* NetworkManager.swift in Sources */,
 				04C305B727F99B4A00999CE8 /* FullArticleViewController.swift in Sources */,
 				04C305B327F99B4A00999CE8 /* AppDelegate.swift in Sources */,
+				04C305D827FC32E800999CE8 /* API.swift in Sources */,
 				04C305B527F99B4A00999CE8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
