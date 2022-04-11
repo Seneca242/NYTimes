@@ -25,7 +25,10 @@ class ArticleTableViewCell: UITableViewCell {
     }
     
     func configure(with article: ArticleDetails) {
-        filmTitleLabel.text = article.display_title
+        
+//        filmTitleLabel.frame.height = 20
+        
+        filmTitleLabel.text = article.display_title?.uppercased()
         headlineLabel.text = article.headline
         summaryShortLabel.text = article.summary_short
         authorLabel.text = article.byline
