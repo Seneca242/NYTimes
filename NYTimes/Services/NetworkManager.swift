@@ -11,7 +11,7 @@ class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     
-    func fetch(from url: String, with completion: @escaping(Result<[ArticleDetails], Error>) -> Void) {
+    func fetch(from url: String, with completion: @escaping(Result<Article, Error>) -> Void) {
         guard let url = URL(string: url) else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -22,7 +22,7 @@ class NetworkManager {
             print(response)
             
             do {
-                let article = try JSONDecoder().decode([ArticleDetails].self, from: data)
+                let article = try JSONDecoder().decode(Article.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(article))
                 }

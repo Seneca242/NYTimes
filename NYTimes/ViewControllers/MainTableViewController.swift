@@ -9,7 +9,7 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
-    var articles: [ArticleDetails] = []
+    var articles: Article?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class MainTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        articles.count
+        articles?.results?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,7 +30,7 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? ArticleTableViewCell else { fatalError() }
-        let articles = articles[indexPath.row]
+        guard let articles = articles?.results?[indexPath.section] else { fatalError()}
         cell.configure(with: articles)
         return cell
     }
