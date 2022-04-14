@@ -36,11 +36,11 @@ class MainTableViewController: UITableViewController {
     }
     
     private func fetchArticles() {
-        NetworkManager.shared.fetch(from: APIManager.shared.url) { results in
+        NetworkManager.shared.fetch(from: APIManager.shared.url) { [weak self] results in
             switch results {
             case .success(let article):
-                self.articles = article
-                self.tableView.reloadData()
+                self?.articles = article
+                self?.tableView.reloadData()
             case .failure(let error):
                 print(error)
             }

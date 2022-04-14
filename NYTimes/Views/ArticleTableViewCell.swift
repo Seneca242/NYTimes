@@ -34,8 +34,8 @@ class ArticleTableViewCell: UITableViewCell {
         DispatchQueue.global().async {
             guard let imageData = try? Data(contentsOf: url) else { return }
             
-            DispatchQueue.main.async {
-                self.articleImage.image = UIImage(data: imageData)
+            DispatchQueue.main.async { [weak self] in
+                self?.articleImage.image = UIImage(data: imageData)
             }
         }
     }
