@@ -13,6 +13,7 @@ class MainTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.contentInset.top = 20
         fetchArticles()
 
     }
@@ -29,6 +30,7 @@ class MainTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.separatorColor = .separator
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? ArticleTableViewCell else { fatalError() }
         guard let articles = articles?.results?[indexPath.section] else { fatalError()}
         cell.configure(with: articles)
