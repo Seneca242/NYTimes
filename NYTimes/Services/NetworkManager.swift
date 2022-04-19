@@ -5,7 +5,7 @@
 //  Created by Дмитрий Дмитрий on 04.04.2022.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
     static let shared = NetworkManager()
@@ -16,9 +16,10 @@ class NetworkManager {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, let response = response else {
-                print(error ?? "No error description")
+                completion(.failure(error?.localizedDescription as! Error))
                 return
             }
+            
             print(response)
             
             do {
