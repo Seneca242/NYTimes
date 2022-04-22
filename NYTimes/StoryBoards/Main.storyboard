@@ -18,7 +18,7 @@
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleCell" rowHeight="196" id="7Oa-3c-e85" customClass="ArticleTableViewCell" customModule="NYTimes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49.5" width="320" height="196"/>
+                                <rect key="frame" x="0.0" y="32" width="320" height="196"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Oa-3c-e85" id="PEk-DH-O0w">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="196"/>
@@ -66,10 +66,11 @@
                                     <outlet property="filmTitleLabel" destination="0dX-cW-yAN" id="asO-w6-POB"/>
                                     <outlet property="headlineLabel" destination="8Bg-bQ-RQW" id="adc-ur-wpg"/>
                                     <outlet property="summaryShortLabel" destination="orW-05-6oc" id="zAq-P2-jaH"/>
+                                    <segue destination="G3K-xQ-XZu" kind="show" identifier="showArticle" id="map-jN-jqT"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="activityCell" rowHeight="45" id="oK5-8K-C3E" customClass="ArticleTableViewCell" customModule="NYTimes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="245.5" width="320" height="45"/>
+                                <rect key="frame" x="0.0" y="228" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oK5-8K-C3E" id="qOr-Kk-j79">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
@@ -88,15 +89,8 @@
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Fvj-Cn-z8z" id="g2K-vb-eRg"/>
-                            <outlet property="delegate" destination="Fvj-Cn-z8z" id="V2c-Ww-mho"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Movie Review Articles" id="1fe-D8-cxb"/>
-                    <connections>
-                        <segue destination="G3K-xQ-XZu" kind="show" identifier="showArticle" id="oll-V2-70y"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2G3-uy-AvJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -111,8 +105,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jol-dc-ITt">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="91" width="320" height="477"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -128,6 +121,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vd1-U4-8Wv"/>
+                    <connections>
+                        <outlet property="articleLabel" destination="jol-dc-ITt" id="zgv-Ay-ZBS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e59-fA-ukj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -137,8 +133,8 @@
         <scene sceneID="5QT-am-Uul">
             <objects>
                 <navigationController id="IOO-rl-0FX" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5gv-iw-Zhg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="5gv-iw-Zhg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

@@ -9,7 +9,7 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    var articles: Article?
+    private var articles: Article?
     private var loadingArticles = true
         
     override func viewDidLoad() {
@@ -69,6 +69,15 @@ class MainTableViewController: UITableViewController {
         )
         alert.addAction(okAction)
         present(alert, animated: true)
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let article = articles?.results?[indexPath.section]
+        guard let fullArticleVC = segue.destination as? FullArticleViewController else { return }
+//        fullArticleVC.article = article
+        fullArticleVC.fullArticleUrl = article?.link?.url
     }
 
 }

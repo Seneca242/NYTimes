@@ -32,6 +32,27 @@ class NetworkManager {
             }
         }.resume()
     }
+    
+    func fetchFullArticle(from url: String, with completion: @escaping(Result<Link, Error>) -> Void) {
+        guard let url = URL(string: url) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, let response = response else {
+                completion(.failure(error?.localizedDescription as! Error))
+                return
+            }
+            print(response)
+            
+            do {
+                let fullArticle = try JSONDecoder().decode(Link.self, from: data)
+                DispatchQueue.main.async {
+                    completion(.success(fullArticle))
+                }
+            } catch let error {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
 }
 
 
