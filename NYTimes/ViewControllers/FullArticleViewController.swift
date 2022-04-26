@@ -11,8 +11,8 @@ import WebKit
 class FullArticleViewController: UIViewController, WKUIDelegate {
 
     @IBOutlet var articleLabel: UILabel!
-    var webView: WKWebView!
     
+    var webView: WKWebView!
     var fullArticleUrl: String!
     
     override func loadView() {
