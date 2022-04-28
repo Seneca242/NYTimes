@@ -36,11 +36,11 @@ class MainTableViewController: UITableViewController {
             tableView.separatorColor = tableView.backgroundColor
             return cell
         } else {
-        tableView.separatorColor = .separator
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? ArticleTableViewCell else { fatalError() }
-        guard let articles = articles?.results?[indexPath.section] else { fatalError()}
-        cell.configure(with: articles)
-        return cell
+            tableView.separatorColor = .separator
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as? ArticleTableViewCell else { fatalError() }
+            guard let articles = articles?.results?[indexPath.section] else { fatalError()}
+            cell.configure(with: articles)
+            return cell
         }
     }
     

@@ -31,24 +31,28 @@ class ArticleTableViewCell: UITableViewCell {
         authorLabel.text = article.byline
         
         guard let imageUrl = URL(string: article.multimedia?.src ?? "") else { return }
-        guard let image = try? Data(contentsOf: imageUrl) else {
-//            articleImage.image = UIImage(named: "gagPicture")
-            articleImage.image = UIImage(systemName: "text.alignright")
-            return
+        
+        DispatchQueue.global().async {
+            guard let image = try? Data(contentsOf: imageUrl) else {
+                //            articleImage.image = UIImage(named: "gagPicture")
+                self.articleImage.image = UIImage(systemName: "text.alignright")
+                return
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.articleImage.image = UIImage(data: image)
+            }
+            
+            
+            
+            //        guard let url = URL(string: article.multimedia?.src ?? "") else { return }
+            //        DispatchQueue.global().async {
+            //            guard let imageData = try? Data(contentsOf: url) else { return }
+            //
+            //            DispatchQueue.main.async { [weak self] in
+            //                self?.articleImage.image = UIImage(data: imageData)
+            //            }
+            //        }
         }
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.articleImage.image = UIImage(data: image)
-        }
-        
-        
-//        guard let url = URL(string: article.multimedia?.src ?? "") else { return }
-//        DispatchQueue.global().async {
-//            guard let imageData = try? Data(contentsOf: url) else { return }
-//            
-//            DispatchQueue.main.async { [weak self] in
-//                self?.articleImage.image = UIImage(data: imageData)
-//            }
-//        }
     }
 }
