@@ -11,47 +11,50 @@ import WebKit
 class FullArticleViewController: UIViewController, WKUIDelegate {
 
     @IBOutlet var articleLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     var webView: WKWebView!
-    var fullArticleUrl: String!
     
+    var fullArticleUrl: String?
+
+    // MARK: - LifeCycle
+
     override func loadView() {
         overrideView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
+
         loadWebView(fullArticleUrl)
     }
 }
 
 extension FullArticleViewController {
-    
+
     private func overrideView() {
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
         view = webView
     }
-    
+
     private func loadWebView(_ string: String?) {
-        guard let fullArticleUrl = fullArticleUrl else { return }
-        
+        guard let fullArticleUrl = fullArticleUrl else {
+            return
+        }
+
         let myURL = URL(string: fullArticleUrl)
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
     }
-    
+
     private func fetchFullArticle() {
-        guard let fullArticleUrl = fullArticleUrl else { return }
-        
+        guard let fullArticleUrl = fullArticleUrl else {
+            return
+        }
+
         NetworkManager.shared.fetchFullArticle(from: fullArticleUrl) { [weak self] results in
             switch results {
             case .success(let fullArtilce):
-                self?.activityIndicator.stopAnimating()
                 self?.articleLabel.text = fullArtilce.url
             case .failure(let error):
                 self?.showAlert(with: error.localizedDescription)
@@ -73,4 +76,3 @@ extension FullArticleViewController {
         present(alert, animated: true)
     }
 }
-

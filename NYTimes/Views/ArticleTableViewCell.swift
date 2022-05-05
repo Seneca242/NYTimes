@@ -15,11 +15,6 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet var authorLabel: UILabel!
     @IBOutlet var articleImage: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-       
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -30,29 +25,22 @@ class ArticleTableViewCell: UITableViewCell {
         summaryShortLabel.text = article.summary_short
         authorLabel.text = article.byline
         
-        guard let imageUrl = URL(string: article.multimedia?.src ?? "") else { return }
+        guard let imageUrl = URL(string: article.multimedia?.src ?? "") else {
+            self.articleImage.image = UIImage(systemName: "text.alignright")
+            return
+        }
         
         DispatchQueue.global().async {
             guard let image = try? Data(contentsOf: imageUrl) else {
-                //            articleImage.image = UIImage(named: "gagPicture")
-                self.articleImage.image = UIImage(systemName: "text.alignright")
+                DispatchQueue.main.async { [weak self] in
+                    self?.articleImage.image = UIImage(systemName: "text.alignright")
+                }
                 return
             }
             
             DispatchQueue.main.async { [weak self] in
                 self?.articleImage.image = UIImage(data: image)
             }
-            
-            
-            
-            //        guard let url = URL(string: article.multimedia?.src ?? "") else { return }
-            //        DispatchQueue.global().async {
-            //            guard let imageData = try? Data(contentsOf: url) else { return }
-            //
-            //            DispatchQueue.main.async { [weak self] in
-            //                self?.articleImage.image = UIImage(data: imageData)
-            //            }
-            //        }
         }
     }
 }
